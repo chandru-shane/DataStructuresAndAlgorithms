@@ -1,7 +1,7 @@
 
 
 """
-Indirect recursion is call one 
+Indirect recursion is call one from another one
 """
 
 

@@ -1,4 +1,7 @@
 
+"""
+nested recursion function call will pass function call as argument
+"""
 
 def func(n):
     if n > 100:
