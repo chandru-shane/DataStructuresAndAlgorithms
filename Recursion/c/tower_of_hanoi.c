@@ -14,6 +14,6 @@ void toh(int n, int A, int B, int C)
 
 int main()
 {   
-    toh(4,1,2,3);
+    toh(3,1,2,3);
     return 0;
 }
