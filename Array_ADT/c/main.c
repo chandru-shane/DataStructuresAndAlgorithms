@@ -57,10 +57,33 @@ int Delete(struct Array *arr, int index){
     return 0;
 }
 
+void swap(int *x, int *y)
+{
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int LinearSearch(struct Array *arr, int key)
+{
+ int i;
+ for(i=0; i<arr-> length; i++){
+     if(key==arr->A[i]){
+         
+        //  swap(&arr->A[i], &arr->A[i-1]); //This is transposition method
+        swap(&arr->A[i], &arr->A[0]); //This is Move to front/Head method
+         return i;
+     }
+     
+ }
+ return -1;
+}
+
 int main(){
     struct Array arr={{1,2,3,4,5}, 20, 5};
    
-    printf("%d ", Delete(&arr,4));
+    printf("%d\n", LinearSearch(&arr,4));
     Display(arr);
     return 0;
 }
