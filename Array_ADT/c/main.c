@@ -1,5 +1,5 @@
 # include <stdio.h>
-
+#include <stdlib.h>
 
 struct Array
 {
@@ -178,6 +178,67 @@ float Avg(struct Array arr){
     return (float) Sum(arr)/arr.length;
     }
 
+void Reverser(struct Array *arr){
+
+    int *B;
+    int i, j;
+
+    B = (int *)malloc(arr->length*sizeof(int));
+
+    for(i=arr->length-1, j=0; i>=0;i--, j++){
+        B[j] = arr->A[i];
+    }
+    for (i=0;i <= arr->length-1; i++){
+        arr->A[i] = B[i];
+    }
+}
+
+// second type of and best type of reveser 
+void Reverse(struct Array *arr){
+    int i,j, temp;
+    for(i=0,j=arr->length-1; i < j ; i++, j--){
+        temp = arr->A[i];
+        arr->A[i] = arr->A[j];
+        arr->A[j] = temp;
+    }
+}
+
+
+
+void LeftShiftbyOne(struct Array *arr){
+    int i,j;
+    i = arr->A[0];
+    for(j = 0; j<arr->length-1;j++){
+        arr->A[j] = arr->A[j+1];
+    }
+    arr->A[arr->length-1] = i;
+}
+
+void LeftShift(struct Array *arr,int d){
+    int i;
+    for(i=0; i < d; i++){
+        LeftShiftbyOne(arr);
+    }
+}
+
+
+void RightShiftbyOne(struct Array *arr){
+    int i, j;
+    i = arr->A[arr->length-1];
+    for(j=arr->length-1;j>0;j--){
+        arr->A[j] = arr->A[j-1];
+    }
+    arr->A[0] = i;
+}
+
+void RightShift(struct Array *arr,int d){
+    int i;
+    for(i=0; i < d; i++){
+        RightShiftbyOne(arr);
+    }
+}
+
+
 int main(){
     struct Array arr={{1,2,3,4,5}, 20, 5};
    
@@ -185,7 +246,8 @@ int main(){
     // printf("%d \n", BinarySearch(arr, 8));
     // printf("%d", Set(&arr, 1, 100));
     // printf("%d\n", Min(arr));
-    printf("%f\n", Avg(arr));
+    // printf("%f\n", Avg(arr));
+    RightShift(&arr,2);
     Display(arr);
     return 0;
 }
