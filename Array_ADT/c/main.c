@@ -238,16 +238,55 @@ void RightShift(struct Array *arr,int d){
     }
 }
 
+int isSorted(struct Array arr)
+{
+    int i;
+    for(i=0;i<arr.length-1;i++)
+    {
+        if(arr.A[i]>arr.A[i+1])
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void InsertSort(struct Array *arr, int value)
+{
+    int i = arr->length-1;
+    if(arr->length ==arr->size){
+        return;
+    }
+    while(i>=0 && arr->A[i]>value){
+        arr->A[i+1] = arr->A[i];
+        i-=1;
+    }
+    printf("%d\t%d\n",i, value);
+    arr->A[i+1] = value;
+    arr->length += 1;
+}
+
+void Arrange(struct Array *arr){
+    int i, j;
+    i = 0;
+    j = arr->length-1;
+    while(i<j){
+        while(arr->A[i]<0)i++;
+        while(arr->A[j]>0)j--;
+        if(i<j){swap(&arr->A[i], &arr->A[j]);
+        }
+    }
+}
 
 int main(){
-    struct Array arr={{1,2,3,4,5}, 20, 5};
+    struct Array arr={{1,-2,3,4,-5}, 20, 5};
    
     // printf("%d\n", RBinSearch(arr.A,0, arr.length - 1,  20));
     // printf("%d \n", BinarySearch(arr, 8));
     // printf("%d", Set(&arr, 1, 100));
     // printf("%d\n", Min(arr));
     // printf("%f\n", Avg(arr));
-    RightShift(&arr,2);
+    Arrange(&arr);
     Display(arr);
     return 0;
 }
